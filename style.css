@@ -1,1 +1,212 @@
+/* Page Background */
 
+body {
+    background-color: #f2f2f2;
+    background-image: url("images/gutiar outline.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: #222222;
+    font-family: Arial, sans-serif;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Header */
+
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #000000;
+    text-align: center;
+    padding: 30px;
+}
+
+header h1 {
+    color: #000000;
+    margin: 0;
+    font-size: 40px;
+}
+
+header p {
+    color: #000000;
+    font-size: 18px;
+}
+
+
+/* Navigation */
+
+nav {
+    background-color: #ffffff;
+
+    text-align: center;
+
+    margin: 0;
+    padding: 15px;
+
+    border-bottom: 2px solid #000000;
+}
+
+nav a {
+    color: #000000;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+
+    text-decoration: none;
+
+    margin: 0 15px;
+    padding: 8px 12px;
+
+    border-radius: 5px;
+}
+
+
+/* Navigation Effect */
+
+nav a:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+
+/* Main Content */
+
+main {
+    background-color: rgba(255, 255, 255, 0.95);
+
+    max-width: 900px;
+
+    margin: 30px auto;
+    padding: 30px;
+
+    border: 2px solid #000000;
+    border-radius: 10px;
+}
+
+
+/* Sections */
+
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+
+    background-color: #ffffff;
+}
+
+
+/* Paragraph Text */
+
+p {
+    color: #000000;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+
+    line-height: 1.7;
+
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+
+/* Lists */
+
+ul {
+    margin: 15px 0;
+    padding-left: 30px;
+}
+
+li {
+    color: #000000;
+
+    font-size: 16px;
+    line-height: 1.6;
+
+    margin-bottom: 8px;
+}
+
+
+/* Images */
+
+img {
+    max-width: 100%;
+    height: auto;
+
+    display: block;
+
+    margin: 20px auto;
+    padding: 5px;
+
+    border: 2px solid #000000;
+    border-radius: 8px;
+}
+
+
+/* Table */
+
+table {
+    width: 100%;
+
+    margin: 20px 0;
+
+    border-collapse: collapse;
+    border: 2px solid #000000;
+}
+
+th {
+    background-color: #000000;
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    padding: 12px;
+
+    border: 1px solid #000000;
+}
+
+td {
+    background-color: #f2f2f2;
+    color: #000000;
+
+    font-size: 16px;
+
+    padding: 12px;
+
+    border: 1px solid #000000;
+}
+
+tr:hover td {
+    background-color: #dddddd;
+}
+
+
+/* Footer */
+
+footer {
+    background-color: rgba(255, 255, 255, 0.95);
+
+    color: #000000;
+    text-align: center;
+
+    margin-top: 30px;
+    padding: 25px;
+
+    border-top: 3px solid #000000;
+}
+
+footer p {
+    color: #000000;
+
+    margin: 0;
+
+    font-size: 14px;
+}
