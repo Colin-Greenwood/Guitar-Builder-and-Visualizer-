@@ -296,28 +296,36 @@ footer p {
     /* Header */
 
     header {
-        padding: 25px 15px;
+        padding: 20px 10px;
     }
 
     header h1 {
-        font-size: 30px;
+        font-size: 28px;
+        line-height: 1.2;
     }
 
     header p {
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 0;
     }
 
 
-    /* Navigation */
+    /* Mobile Navigation */
 
     nav {
-        display: grid;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
 
-        grid-template-columns: 1fr;
+        width: 100%;
 
         gap: 5px;
 
+        margin: 0;
         padding: 10px;
+
+        text-align: center;
     }
 
     nav a {
@@ -326,8 +334,13 @@ footer p {
         width: 100%;
 
         margin: 0;
+        padding: 10px;
 
-        padding: 12px;
+        line-height: 1.3;
+
+        font-size: 16px;
+
+        box-sizing: border-box;
     }
 
 
@@ -342,7 +355,7 @@ footer p {
 
         margin: 15px auto;
 
-        padding: 15px;
+        padding: 10px;
 
         gap: 15px;
     }
@@ -351,6 +364,7 @@ footer p {
     /* Sections */
 
     section {
+        width: 100%;
         padding: 15px;
     }
 
@@ -366,7 +380,6 @@ footer p {
 
     img {
         max-width: 100%;
-
         height: auto;
     }
 
@@ -379,15 +392,14 @@ footer p {
 
     th,
     td {
-        padding: 8px;
-
-        font-size: 14px;
+        padding: 7px;
+        font-size: 13px;
     }
 
 
     /* Footer */
 
     footer {
-        padding: 20px 15px;
+        padding: 20px 10px;
     }
 }
