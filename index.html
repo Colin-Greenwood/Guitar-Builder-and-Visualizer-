@@ -1,36 +1,42 @@
+```html
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Custom Guitar Builder</title>
+
     <link rel="stylesheet" href="style.css">
 
+    <!-- External JavaScript file -->
     <script src="script.js" defer></script>
-    
 </head>
 
 <body>
 
+    <!-- Header -->
     <header>
         <h1>Custom Guitar Builder</h1>
         <p>Design and create your own custom guitar.</p>
     </header>
 
+
+    <!-- Navigation -->
     <nav>
         <a href="#home">Home</a>
         <a href="#builder">Guitar Builder</a>
         <a href="#about">About</a>
     </nav>
 
+
     <main>
 
-        <section id="home">
-            <h2>Build Your Dream Guitar</h2>
+        <!-- Home Section -->
+        <section id="home" class="section-card">
 
-            <img src="images/Black_Strat.jpg"
-                 alt="Black electric guitar with a maple neck and three single-coil pickups">
+            <h2>Build Your Dream Guitar</h2>
 
             <p>
                 Welcome to the Custom Guitar Builder. This website lets you
@@ -38,93 +44,248 @@
                 your personal style and sound.
             </p>
 
-            <p>
-                You can choose different body styles, pickups, hardware,
-                necks, and finishes to create a guitar that fits the way
-                you want to play.
-            </p>
+            <img
+                id="guitarImage"
+                src="images/Black_Strat.jpg"
+                alt="Black electric guitar with a maple neck and three single-coil pickups"
+                data-guitar="electric"
+            >
+
         </section>
 
-        <section id="builder">
-            <h2>Choose Your Guitar Parts</h2>
 
-            <ul>
-                <li>Guitar Body</li>
-                <li>Pickups</li>
-                <li>Neck</li>
-                <li>Hardware</li>
-                <li>Finish</li>
-            </ul>
+        <!-- Guitar Builder Section -->
+        <section id="builder" class="section-card">
 
-            <h3>Guitar Body</h3>
+            <h2>Guitar Builder</h2>
 
             <p>
-                Choose a guitar body style that matches the look and feel
-                you want for your instrument.
+                Choose your guitar parts below and build your custom guitar.
             </p>
 
-            <h3>Pickups</h3>
+
+            <!-- Guitar Name -->
+            <div class="builder-control">
+                <label for="guitarName">Guitar Name:</label>
+
+                <input
+                    type="text"
+                    id="guitarName"
+                    placeholder="Enter a guitar name"
+                    value="My Custom Guitar"
+                >
+            </div>
+
+
+            <!-- Body -->
+            <div class="builder-control">
+                <label for="bodyType">Body:</label>
+
+                <select id="bodyType">
+                    <option value="Stratocaster" data-price="150">
+                        Stratocaster
+                    </option>
+
+                    <option value="Les Paul" data-price="250">
+                        Les Paul
+                    </option>
+
+                    <option value="Telecaster" data-price="175">
+                        Telecaster
+                    </option>
+
+                    <option value="Explorer" data-price="300">
+                        Explorer
+                    </option>
+                </select>
+            </div>
+
+
+            <!-- Pickups -->
+            <div class="builder-control">
+                <label for="pickupType">Pickups:</label>
+
+                <select id="pickupType">
+                    <option value="Three Single-Coil Pickups" data-price="180">
+                        Three Single-Coil Pickups
+                    </option>
+
+                    <option value="Two Humbuckers" data-price="250">
+                        Two Humbuckers
+                    </option>
+
+                    <option value="Humbucker and Single-Coil" data-price="220">
+                        Humbucker and Single-Coil
+                    </option>
+                </select>
+            </div>
+
+
+            <!-- Neck -->
+            <div class="builder-control">
+                <label for="neckType">Neck:</label>
+
+                <select id="neckType">
+                    <option value="Maple Neck" data-price="120">
+                        Maple Neck
+                    </option>
+
+                    <option value="Rosewood Neck" data-price="150">
+                        Rosewood Neck
+                    </option>
+
+                    <option value="Ebony Neck" data-price="200">
+                        Ebony Neck
+                    </option>
+                </select>
+            </div>
+
+
+            <!-- Hardware -->
+            <div class="builder-control">
+                <label for="hardwareType">Hardware:</label>
+
+                <select id="hardwareType">
+                    <option value="Chrome Hardware" data-price="80">
+                        Chrome Hardware
+                    </option>
+
+                    <option value="Black Hardware" data-price="100">
+                        Black Hardware
+                    </option>
+
+                    <option value="Gold Hardware" data-price="150">
+                        Gold Hardware
+                    </option>
+                </select>
+            </div>
+
+
+            <!-- Finish -->
+            <div class="builder-control">
+                <label for="finishType">Finish:</label>
+
+                <select id="finishType">
+                    <option value="Black Finish" data-price="100">
+                        Black Finish
+                    </option>
+
+                    <option value="Sunburst Finish" data-price="130">
+                        Sunburst Finish
+                    </option>
+
+                    <option value="White Finish" data-price="100">
+                        White Finish
+                    </option>
+
+                    <option value="Red Finish" data-price="120">
+                        Red Finish
+                    </option>
+                </select>
+            </div>
+
+
+            <!-- Build Button -->
+            <button id="buildButton" type="button">
+                Build My Guitar
+            </button>
+
+
+            <!-- Builder Result -->
+            <div id="buildResult" class="build-result">
+
+                <h3 id="guitarDescription">
+                    Your custom guitar will appear here.
+                </h3>
+
+                <p id="guitarPrice">
+                    Estimated Price: $0
+                </p>
+
+                <p id="buildMessage">
+                    Choose your parts and click "Build My Guitar."
+                </p>
+
+            </div>
+
+
+            <!-- Dynamically created guitar parts will appear here -->
+            <div class="parts-container">
+
+                <h3>Selected Parts</h3>
+
+                <ul id="partsList">
+                    <li>No guitar has been built yet.</li>
+                </ul>
+
+            </div>
+
+        </section>
+
+
+        <!-- About Section -->
+        <section id="about" class="section-card">
+
+            <h2>About the Builder</h2>
 
             <p>
-                Pickups have a major effect on the sound of an electric
-                guitar. Choose pickups based on the type of music you enjoy.
+                The Custom Guitar Builder is a simple interactive website
+                designed to let users experiment with different guitar
+                components and create their own custom instrument.
             </p>
-
-            <h3>Finish</h3>
 
             <p>
-                Select a finish and color to give your guitar its own
-                unique appearance.
+                Electric guitars can be customized in many different ways.
+                Different bodies, pickups, necks, hardware, and finishes can
+                change both the appearance and sound of a guitar.
             </p>
 
-            <h3>Guitar Parts Information</h3>
+
+            <!-- Guitar Parts Table -->
+            <h3>Common Guitar Parts</h3>
 
             <table>
                 <thead>
                     <tr>
-                        <th>Guitar Part</th>
+                        <th>Part</th>
                         <th>Purpose</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr>
+                        <td>Body</td>
+                        <td>Provides the main shape and structure.</td>
+                    </tr>
+
+                    <tr>
                         <td>Pickups</td>
-                        <td>Control the guitar's sound</td>
+                        <td>Convert string vibrations into an electrical signal.</td>
                     </tr>
 
                     <tr>
                         <td>Neck</td>
-                        <td>Holds the frets and fingerboard</td>
+                        <td>Holds the fretboard and frets.</td>
                     </tr>
 
                     <tr>
-                        <td>Body</td>
-                        <td>Holds the electronics and bridge</td>
+                        <td>Hardware</td>
+                        <td>Includes components such as the bridge and tuners.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Finish</td>
+                        <td>Provides the guitar's color and appearance.</td>
                     </tr>
                 </tbody>
             </table>
 
         </section>
 
-        <section id="about">
-            <h2>About the Guitar Builder</h2>
-
-            <p>
-                Building a custom guitar allows musicians to combine
-                different features to create an instrument that fits
-                their playing style.
-            </p>
-
-            <p>
-                This website is designed to help guitar players explore
-                different options and learn more about the parts that
-                make up an electric guitar.
-            </p>
-        </section>
-
     </main>
 
+
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Custom Guitar Builder</p>
     </footer>
@@ -132,3 +293,4 @@
 </body>
 
 </html>
+```
