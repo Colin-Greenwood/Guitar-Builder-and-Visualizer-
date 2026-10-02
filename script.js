@@ -1,125 +1,250 @@
-// =========================================
-// Guitar Builder JavaScript
-// =========================================
-
-// =========================================
-// 1. Variables, Constants, and Data Types
-// =========================================
-
-// Basic guitar builder information
-const builderName = "Custom Guitar Builder";
-const basePrice = 799;
-const guitarReady = true;
-
-// User-selected guitar options
-let selectedBody = "Stratocaster";
-let selectedPickup = "Humbucker";
-let selectedColor = "Black";
-
-// Convert a string price into a number
-const extraCostText = "150";
-const extraCost = Number(extraCostText);
-
-// Check data types
-console.log("Builder name type:", typeof builderName);
-console.log("Base price:", basePrice);
-console.log("Guitar ready:", guitarReady);
-console.log("Extra cost:", extraCost);
-console.log("Extra cost type:", typeof extraCost);
+```javascript
+/* ================================= */
+/* Custom Guitar Builder JavaScript */
+/* ================================= */
 
 
-// =========================================
-// 2. Guitar Parts Array
-// =========================================
+/* ================================= */
+/* 1. Select Page Elements */
+/* ================================= */
 
-const guitarParts = [
-    "Body",
-    "Neck",
-    "Pickups",
-    "Bridge",
-    "Tuning Machines"
-];
+const guitarName = document.querySelector("#guitarName");
+const bodyType = document.querySelector("#bodyType");
+const pickupType = document.querySelector("#pickupType");
+const neckType = document.querySelector("#neckType");
+const hardwareType = document.querySelector("#hardwareType");
+const finishType = document.querySelector("#finishType");
 
-console.log("Guitar parts:");
+const buildButton = document.querySelector("#buildButton");
 
-for (let part of guitarParts) {
-    console.log("- " + part);
+const guitarImage = document.querySelector("#guitarImage");
+
+const buildResult = document.querySelector("#buildResult");
+const guitarDescription = document.querySelector("#guitarDescription");
+const guitarPrice = document.querySelector("#guitarPrice");
+const buildMessage = document.querySelector("#buildMessage");
+
+const partsList = document.querySelector("#partsList");
+
+
+/* ================================= */
+/* Variables and Constants */
+/* ================================= */
+
+const basePrice = 500;
+
+let buildCount = 0;
+
+let guitarIsBuilt = false;
+
+
+/* ================================= */
+/* 6. Read an Attribute */
+/* ================================= */
+
+/*
+    The image has a data-guitar attribute
+    in the HTML.
+
+    JavaScript reads that attribute and
+    stores the value in a variable.
+*/
+
+const guitarType = guitarImage.dataset.guitar;
+
+console.log("Guitar type:", guitarType);
+
+
+/* ================================= */
+/* 2 + 4. Build Guitar Function */
+/* ================================= */
+
+function buildGuitar() {
+
+    /* Get the user's guitar name */
+
+    const name = guitarName.value.trim();
+
+
+    /* If the user leaves the name blank,
+       give the guitar a default name. */
+
+    let finalName;
+
+    if (name === "") {
+        finalName = "My Custom Guitar";
+    } else {
+        finalName = name;
+    }
+
+
+    /* Get selected guitar parts */
+
+    const body = bodyType.value;
+    const pickups = pickupType.value;
+    const neck = neckType.value;
+    const hardware = hardwareType.value;
+    const finish = finishType.value;
+
+
+    /* ================================= */
+    /* Calculate Price */
+    /* ================================= */
+
+    const bodyPrice =
+        Number(bodyType.options[bodyType.selectedIndex].dataset.price);
+
+    const pickupPrice =
+        Number(pickupType.options[pickupType.selectedIndex].dataset.price);
+
+    const neckPrice =
+        Number(neckType.options[neckType.selectedIndex].dataset.price);
+
+    const hardwarePrice =
+        Number(hardwareType.options[hardwareType.selectedIndex].dataset.price);
+
+    const finishPrice =
+        Number(finishType.options[finishType.selectedIndex].dataset.price);
+
+
+    const totalPrice =
+        basePrice +
+        bodyPrice +
+        pickupPrice +
+        neckPrice +
+        hardwarePrice +
+        finishPrice;
+
+
+    /* ================================= */
+    /* Update Visible Page Text */
+    /* ================================= */
+
+    guitarDescription.textContent =
+        `${finalName} has been built!`;
+
+    guitarPrice.textContent =
+        `Estimated Price: $${totalPrice}`;
+
+    buildMessage.textContent =
+        `${body}, ${pickups}, ${neck}, ${hardware}, and ${finish}.`;
+
+
+    /* ================================= */
+    /* 3. Create Visual State */
+    /* ================================= */
+
+    buildResult.classList.add("built");
+
+    guitarImage.classList.add("guitar-selected");
+
+
+    /* ================================= */
+    /* 5. Create Elements Dynamically */
+    /* ================================= */
+
+    /* Remove the old list */
+
+    partsList.innerHTML = "";
+
+
+    /* Create an array containing the selected parts */
+
+    const selectedParts = [
+        `Body: ${body}`,
+        `Pickups: ${pickups}`,
+        `Neck: ${neck}`,
+        `Hardware: ${hardware}`,
+        `Finish: ${finish}`
+    ];
+
+
+    /* Create a new <li> for every part */
+
+    selectedParts.forEach(function(part) {
+
+        const item = document.createElement("li");
+
+        item.textContent = part;
+
+        partsList.append(item);
+
+    });
+
+
+    /* ================================= */
+    /* 6. Update an Attribute */
+    /* ================================= */
+
+    guitarImage.alt =
+        `${finalName} custom electric guitar with ${pickups.toLowerCase()}`;
+
+    guitarImage.dataset.guitar = finalName;
+
+
+    /* ================================= */
+    /* Update Build Count */
+    /* ================================= */
+
+    buildCount++;
+
+    guitarIsBuilt = true;
+
+
+    console.log("Build number:", buildCount);
+    console.log("Guitar built:", guitarIsBuilt);
 }
 
-// Access an array element
-console.log("First guitar part:", guitarParts[0]);
+
+/* ================================= */
+/* 4. Click Event Listener */
+/* ================================= */
+
+buildButton.addEventListener("click", buildGuitar);
 
 
-// =========================================
-// 3. Guitar Object
-// =========================================
+/* ================================= */
+/* 4. Second Event Listener */
+/* ================================= */
 
-const guitar = {
-    body: selectedBody,
-    pickup: selectedPickup,
-    color: selectedColor,
-    price: basePrice
-};
+/*
+    The input event runs whenever the user
+    types into the Guitar Name box.
+*/
 
-// Access object properties
-console.log("Guitar body:", guitar.body);
-console.log("Guitar pickup:", guitar.pickup);
-console.log("Guitar color:", guitar.color);
-console.log("Guitar price:", guitar.price);
+guitarName.addEventListener("input", function() {
+
+    const currentName = guitarName.value.trim();
 
 
-// =========================================
-// 4. Conditional Statement
-// =========================================
+    if (currentName !== "") {
 
-// Determine whether the guitar is affordable
-const totalPrice = guitar.price + extraCost;
+        buildMessage.textContent =
+            `Your guitar will be named "${currentName}".`;
 
-if (totalPrice <= 1000 && guitarReady === true) {
-    console.log("Your guitar is ready and costs $1,000 or less.");
-} else if (totalPrice > 1000) {
-    console.log("Your guitar costs more than $1,000.");
-} else {
-    console.log("Your guitar still needs to be completed.");
-}
+    } else {
 
+        buildMessage.textContent =
+            "Enter a name for your custom guitar.";
 
-// =========================================
-// 5. Function
-// =========================================
+    }
 
-// Calculate the total guitar price
-function calculateGuitarPrice(basePrice, additionalCost) {
-    return basePrice + additionalCost;
-}
-
-// Call the function with two different sets of arguments
-const guitarPriceOne = calculateGuitarPrice(799, 150);
-const guitarPriceTwo = calculateGuitarPrice(999, 200);
-
-console.log("First guitar price:", guitarPriceOne);
-console.log("Second guitar price:", guitarPriceTwo);
+});
 
 
-// =========================================
-// 6. Guitar Description Function
-// =========================================
+/* ================================= */
+/* Optional Change Event */
+/* ================================= */
 
-function describeGuitar(body, pickup, color) {
-    return color + " " + body + " with " + pickup + " pickups";
-}
+/*
+    This gives the page another interactive
+    event. When the user changes the finish,
+    the guitar image gets a visual state.
+*/
 
-const guitarDescription = describeGuitar(
-    guitar.body,
-    guitar.pickup,
-    guitar.color
-);
+finishType.addEventListener("change", function() {
 
-console.log("Your custom guitar:", guitarDescription);
+    guitarImage.classList.toggle("guitar-selected");
 
-
-// =========================================
-// 7. Final Message
-// =========================================
-
-console.log("Guitar Builder JavaScript loaded successfully!");
+});
+```
