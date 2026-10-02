@@ -1,10 +1,13 @@
-```javascript
 /* ================================= */
-/* Custom Guitar Builder JavaScript */
+/* Custom Guitar Builder */
 /* ================================= */
 
+console.log("SCRIPT.JS LOADED");
 
-/* Select HTML elements */
+
+/* ================================= */
+/* Select Elements */
+/* ================================= */
 
 const guitarName = document.querySelector("#guitarName");
 const bodyType = document.querySelector("#bodyType");
@@ -15,20 +18,14 @@ const finishType = document.querySelector("#finishType");
 
 const buildButton = document.querySelector("#buildButton");
 
-const guitarImage = document.querySelector("#guitarImage");
-
 const buildResult = document.querySelector("#buildResult");
 const guitarDescription = document.querySelector("#guitarDescription");
 const guitarPrice = document.querySelector("#guitarPrice");
 const buildMessage = document.querySelector("#buildMessage");
 
+const guitarImage = document.querySelector("#guitarImage");
+
 const partsList = document.querySelector("#partsList");
-
-
-/* Check that JavaScript is running */
-
-console.log("Custom Guitar Builder JavaScript is working!");
-
 
 
 /* ================================= */
@@ -37,7 +34,7 @@ console.log("Custom Guitar Builder JavaScript is working!");
 
 function buildGuitar() {
 
-    console.log("Build button was clicked!");
+    console.log("BUILD BUTTON CLICKED");
 
 
     /* Get guitar name */
@@ -49,7 +46,7 @@ function buildGuitar() {
     }
 
 
-    /* Get selected parts */
+    /* Get selected guitar parts */
 
     const body = bodyType.value;
     const pickups = pickupType.value;
@@ -58,7 +55,9 @@ function buildGuitar() {
     const finish = finishType.value;
 
 
-    /* Get prices from the selected options */
+    /* ================================= */
+    /* Calculate Price */
+    /* ================================= */
 
     const bodyPrice = Number(
         bodyType.options[bodyType.selectedIndex].dataset.price
@@ -80,9 +79,6 @@ function buildGuitar() {
         finishType.options[finishType.selectedIndex].dataset.price
     );
 
-
-    /* Calculate total */
-
     const basePrice = 500;
 
     const totalPrice =
@@ -99,17 +95,21 @@ function buildGuitar() {
     /* ================================= */
 
     guitarDescription.textContent =
-        `${name} has been built!`;
+        name + " has been built!";
 
     guitarPrice.textContent =
-        `Estimated Price: $${totalPrice}`;
+        "Estimated Price: $" + totalPrice;
 
     buildMessage.textContent =
-        `${body} body with ${pickups}, a ${neck}, ${hardware}, and a ${finish}.`;
+        body + " body with " +
+        pickups + ", a " +
+        neck + ", " +
+        hardware + ", and a " +
+        finish + ".";
 
 
     /* ================================= */
-    /* Add Visual State */
+    /* Add CSS Classes */
     /* ================================= */
 
     buildResult.classList.add("built");
@@ -118,22 +118,22 @@ function buildGuitar() {
 
 
     /* ================================= */
-    /* Create Parts List */
+    /* Create New Elements */
     /* ================================= */
 
     partsList.innerHTML = "";
 
 
     const parts = [
-        `Body: ${body}`,
-        `Pickups: ${pickups}`,
-        `Neck: ${neck}`,
-        `Hardware: ${hardware}`,
-        `Finish: ${finish}`
+        "Body: " + body,
+        "Pickups: " + pickups,
+        "Neck: " + neck,
+        "Hardware: " + hardware,
+        "Finish: " + finish
     ];
 
 
-    parts.forEach(function(part) {
+    parts.forEach(function (part) {
 
         const item = document.createElement("li");
 
@@ -148,15 +148,16 @@ function buildGuitar() {
     /* Update Image Attribute */
     /* ================================= */
 
-    guitarImage.alt =
-        `${name} custom electric guitar`;
+    guitarImage.setAttribute(
+        "alt",
+        name + " custom electric guitar"
+    );
 
     guitarImage.dataset.guitar = name;
 
 
-    console.log("Guitar successfully built!");
+    console.log("GUITAR BUILT SUCCESSFULLY");
 }
-
 
 
 /* ================================= */
@@ -166,12 +167,11 @@ function buildGuitar() {
 buildButton.addEventListener("click", buildGuitar);
 
 
-
 /* ================================= */
-/* Guitar Name Input Event */
+/* Input Event */
 /* ================================= */
 
-guitarName.addEventListener("input", function() {
+guitarName.addEventListener("input", function () {
 
     if (guitarName.value.trim() === "") {
 
@@ -181,21 +181,21 @@ guitarName.addEventListener("input", function() {
     } else {
 
         buildMessage.textContent =
-            `Your guitar will be named "${guitarName.value}".`;
+            "Your guitar will be named \"" +
+            guitarName.value +
+            "\".";
 
     }
 
 });
 
 
-
 /* ================================= */
-/* Finish Change Event */
+/* Change Event */
 /* ================================= */
 
-finishType.addEventListener("change", function() {
+finishType.addEventListener("change", function () {
 
     guitarImage.classList.toggle("guitar-selected");
 
 });
-```
